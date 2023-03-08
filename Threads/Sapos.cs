@@ -48,7 +48,8 @@ public class FrogRun : Exec
         Frog[] racers = new Frog[nRacers];
         for(int i = 0; i < nRacers; i++)
         {
-            racers[i] = new Frog((i * i) + (-6 *i) + 30, i);
+            Random rng = new Random();
+            racers[i] = new Frog(rng.Next(raceDistance / 5) + 10, i);
             racers[i].thread.Start();
         }
     }
