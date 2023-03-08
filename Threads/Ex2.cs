@@ -1,3 +1,6 @@
+using System;
+using System.Threading;
+
 public class Exex2 : Exec
 {
     private int time;
@@ -22,9 +25,8 @@ public class Exex2 : Exec
         flag = false;
 
         Thread timer = new Thread(new ThreadStart(IncrementTime));
-        timer.Start();
-        Thread.Sleep(1000);
         Console.WriteLine("Qual a capital da Europa?");
+        timer.Start();
         Thread.Sleep(1000);
         Console.WriteLine("A) Roma");
         Thread.Sleep(1000);
