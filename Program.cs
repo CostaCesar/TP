@@ -15,7 +15,8 @@ public class Program
         List<Exec> programs = new List<Exec>()
         {
             new Exex1(),
-            new Exex2()
+            new Exex2(),
+            new FrogRun()
         };
 
         foreach(Exec X in programs)
