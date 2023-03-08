@@ -13,7 +13,7 @@ public class Exex2 : Exec
             time++;
             if(time > 6)
             {
-                flag = true;
+                Console.WriteLine("Tempo esgotado!");
                 return;
             }
             Thread.Sleep(1000);
@@ -35,14 +35,10 @@ public class Exex2 : Exec
         Console.WriteLine("C) Moskow");
         Thread.Sleep(1000);
         Console.WriteLine("D) Constantinopla");
-        while(true)
-        {
-            if(flag == true)
-            {
-                timer.Join();
-                Console.WriteLine("Tempo esgotado!");
-                return;
-            }
-        }
+        Thread.Sleep(1000);
+        Console.WriteLine("Sua resposta: ");
+        Thread.Sleep(1000);
+        
+        timer.Join();
     }
 }

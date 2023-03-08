@@ -28,5 +28,8 @@ public class Exex1 : Exec
         t1.Start();
         t2.Start();
         t3.Start();
+        t1.Join();
+        t2.Join();
+        t3.Join();
     }
 }
