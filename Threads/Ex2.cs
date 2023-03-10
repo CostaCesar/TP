@@ -1,44 +1,35 @@
 using System;
 using System.Threading;
-
-public class Exex2 : Exec
+public class A2X1 : Exec
 {
-    private int time;
-    private bool flag;
-    private void IncrementTime()
+    internal class Run1
     {
-        while(true)
+        public readonly int ID;
+        public Run1(int id)
         {
-            Console.Write(time + "... ");
-            time++;
-            if(time > 6)
-            {
-                Console.WriteLine("Tempo esgotado!");
-                return;
-            }
-            Thread.Sleep(1000);
+            this.ID = id;
+        }
+        public void Run()
+        {
+            for(int i = 0; i < 1000; i++)
+                Console.WriteLine("<Programa " + ID + ">: " + i);
+            Console.WriteLine("<Programa " + ID + ">: Finished!");
         }
     }
     public override void Execute()
     {
-        time = 1;
-        flag = false;
-
-        Thread timer = new Thread(new ThreadStart(IncrementTime));
-        Console.WriteLine("Qual a capital da Europa?");
-        timer.Start();
-        Thread.Sleep(1000);
-        Console.WriteLine("A) Roma");
-        Thread.Sleep(1000);
-        Console.WriteLine("B) Berlim");
-        Thread.Sleep(1000);
-        Console.WriteLine("C) Moskow");
-        Thread.Sleep(1000);
-        Console.WriteLine("D) Constantinopla");
-        Thread.Sleep(1000);
-        Console.WriteLine("Sua resposta: ");
-        Thread.Sleep(1000);
+        Run1 one = new Run1(1);
+        Thread t1 = new Thread(new ThreadStart(one.Run));
+        Run1 two = new Run1(2);
+        Thread t2 = new Thread(new ThreadStart(two.Run));
+        Run1 three = new Run1(3);
+        Thread t3 = new Thread(new ThreadStart(three.Run));
         
-        timer.Join();
+        t1.Start();
+        t2.Start();
+        t3.Start();
+        t1.Join();
+        t2.Join();
+        t3.Join();
     }
 }
