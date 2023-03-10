@@ -16,7 +16,9 @@ public class Program
         {
             {"aula2_x1", new A2X1()},
             {"aula2_x2", new A2X2()},
-            {"aula2_x4", new A2X4()}
+            {"aula2_x4", new A2X4()},
+            {"aula3_x2", new A3X2()},
+            {"aula3_x3", new A3X3()}
         };
 
         Console.WriteLine("TP 2023: Caio Cesar Moraes Costa");
