@@ -20,14 +20,15 @@ public class Program
             {"aula3_x2", new A3X2()},
             {"aula3_x3", new A3X3()}
         };
+        
 
         Console.WriteLine("TP 2023: Caio Cesar Moraes Costa");
         Console.WriteLine("Exercicios prontos: ");
         foreach(string index in programs.Keys)
             Console.WriteLine("-> " + index);
         Console.Write("Escolha: ");
-        string choice = Console.ReadLine();
-        if(programs.ContainsKey(choice))
+        string? choice = Console.ReadLine();
+        if((choice != null) && programs.ContainsKey(choice))
             programs[choice].Execute();
         else Console.WriteLine("# PROGRAMA INEXISTENTE! #");
 

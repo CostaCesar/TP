@@ -2,10 +2,10 @@ using System;
 using System.Threading;
 public class A2X1 : Exec
 {
-    internal class Run1
+    internal class Counter
     {
         public readonly int ID;
-        public Run1(int id)
+        public Counter(int id)
         {
             this.ID = id;
         }
@@ -18,11 +18,11 @@ public class A2X1 : Exec
     }
     public override void Execute()
     {
-        Run1 one = new Run1(1);
+        Counter one = new Counter(1);
         Thread t1 = new Thread(new ThreadStart(one.Run));
-        Run1 two = new Run1(2);
+        Counter two = new Counter(2);
         Thread t2 = new Thread(new ThreadStart(two.Run));
-        Run1 three = new Run1(3);
+        Counter three = new Counter(3);
         Thread t3 = new Thread(new ThreadStart(three.Run));
         
         t1.Start();

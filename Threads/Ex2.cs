@@ -1,35 +1,50 @@
 using System;
 using System.Threading;
-public class A2X1 : Exec
+public class A2X2 : Exec
 {
-    internal class Run1
+    private int time;
+    private void IncrementTime()
     {
-        public readonly int ID;
-        public Run1(int id)
+        while(true)
         {
-            this.ID = id;
-        }
-        public void Run()
-        {
-            for(int i = 0; i < 1000; i++)
-                Console.WriteLine("<Programa " + ID + ">: " + i);
-            Console.WriteLine("<Programa " + ID + ">: Finished!");
+            Console.Write(time + "... ");
+            time++;
+            if(time > 4)
+            {
+                Console.WriteLine("Tempo esgotado!");
+                return;
+            }
+            Thread.Sleep(1000);
         }
     }
     public override void Execute()
     {
-        Run1 one = new Run1(1);
-        Thread t1 = new Thread(new ThreadStart(one.Run));
-        Run1 two = new Run1(2);
-        Thread t2 = new Thread(new ThreadStart(two.Run));
-        Run1 three = new Run1(3);
-        Thread t3 = new Thread(new ThreadStart(three.Run));
-        
-        t1.Start();
-        t2.Start();
-        t3.Start();
-        t1.Join();
-        t2.Join();
-        t3.Join();
+        time = 1;
+        string? choice;
+        Thread timer = new Thread(new ThreadStart(IncrementTime));
+        Console.WriteLine("Qual a capital da Europa?");
+        Thread.Sleep(1000);
+        Console.WriteLine("A) Roma");
+        Thread.Sleep(1000);
+        Console.WriteLine("B) Berlim");
+        Thread.Sleep(1000);
+        Console.WriteLine("C) Moskow");
+        Thread.Sleep(1000);
+        Console.WriteLine("D) Constantinopla");
+        Thread.Sleep(1000);
+        timer.Start();
+
+        while(timer.IsAlive)
+        {
+            choice = Console.ReadLine();
+            if((choice != null) && choice == "a")
+            {
+                Console.WriteLine("Resposta Correta");
+                break;
+            }
+            else
+                Console.WriteLine("Tente novamente");
+        }
+
     }
 }

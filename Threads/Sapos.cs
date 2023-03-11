@@ -7,7 +7,7 @@ public class A2X4 : Exec
 {
     static private int raceDistance = 300;
     static private int nRacers = 10;
-    static protected List<int> winners;
+    static protected List<int> winners = new List<int>();
 
     internal class Frog
     {
@@ -49,7 +49,6 @@ public class A2X4 : Exec
     {
         Console.WriteLine("Super FROGRUN 2077 Deluxe");
         Frog[] racers = new Frog[nRacers];
-        winners = new List<int>();
         for(int i = 0; i < nRacers; i++)
         {
             Random rng = new Random();
