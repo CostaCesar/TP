@@ -19,7 +19,8 @@ public class Program
             {"aula2_x4", new A2X4()},
             {"aula3_x2", new A3X2()},
             {"aula3_x3", new A3X3()},
-            {"aula3_x4", new A3X4()}
+            {"aula3_x4", new A3X4()},
+            {"aula4", new A4()}
         };
         
 
@@ -27,6 +28,7 @@ public class Program
         Console.WriteLine("Exercicios prontos: ");
         foreach(string index in programs.Keys)
             Console.WriteLine("-> " + index);
+        
         Console.Write("Escolha: ");
         string? choice = Console.ReadLine();
         if((choice != null) && programs.ContainsKey(choice))
