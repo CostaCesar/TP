@@ -24,38 +24,46 @@ public class Server
     {
         try
         {
+            // Criar o sentinela
             Socket listener = new Socket(ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
             listener.Bind(this.serverPoint);
             listener.Listen(this.maxConnectionQueue);
-
             Console.WriteLine("Server started in " + this.ipAddress.ToString() + ":" + this.port);
+            
+            // Esperar conexão e estabelecer
             Console.WriteLine("Waiting connection...");
             Socket conection = listener.Accept();
-            Console.WriteLine("Connected with " + (conection.RemoteEndPoint != null ? conection.RemoteEndPoint.ToString() : "NONE"));
+            Console.WriteLine("Connected to " + (conection.RemoteEndPoint != null ? conection.RemoteEndPoint.ToString() : "NONE"));
 
-            string? data;
-            byte[] bytes;
-
+            // Loop para mensagens enquanto não receber "ESC" do client
             while(true)
             {
-                data = null;
+                string? data = null;
+                byte[] bytes;
+                
+                // Receber mensagem do cliente
+                // Unica parte que é "segura" para ser assíncrona
                 while(true)
                 {
                     bytes = new byte[1024];
-                    int size = conection.Receive(bytes);
-                    data += Encoding.ASCII.GetString(bytes, 0, size);
+                    int received_Bytes = conection.Receive(bytes);
+                    data += Encoding.ASCII.GetString(bytes, 0, received_Bytes);
                     if(data.IndexOf("<EOF>") > -1)
                         break;
                 }
+                // Se receber "ESC", sair
                 if(data.IndexOf("ESC") == 0)
                     break;
 
+                // Mostrar recepção
                 data = data.Substring(0, data.Length - 5);
                 Console.WriteLine("Received: " + data);
 
+                // Enviar resposta para o cliente
                 bytes = Encoding.ASCII.GetBytes(String.Format("<Server received message>: {0}", data));
                 conection.Send(bytes);
             }
+            // Fechar o servidor
             Console.WriteLine("Server closed!");
             conection.Shutdown(SocketShutdown.Both);
             conection.Close();
