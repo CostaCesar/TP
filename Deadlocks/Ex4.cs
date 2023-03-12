@@ -74,7 +74,7 @@ public class A3X4 : Exec
                 if(this.stack.Count > 0)
                 {
                     this.stack.TryPop(out consumed);
-                    Console.WriteLine("Consumed " + consumed);
+                    Console.WriteLine(" Consumed " + consumed);
                 }
                 try
                 { Thread.Sleep((new Random().Next() % 3 + 1) * 1000); }
